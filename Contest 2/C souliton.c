@@ -7,19 +7,19 @@
 int wt[MAX_N], val[MAX_N];
 long long dp[MAX_N][MAX_W];
 
-long long solve(int idx, int wt_left) {
-    if (wt_left == 0)
+long long s(int idx, int wL) {
+    if (wL == 0)
         return 0;
     if (idx < 0)
         return 0;
-    if (dp[idx][wt_left] != -1)
-        return dp[idx][wt_left];
+    if (dp[idx][wL] != -1)
+        return dp[idx][wL];
 
-    long long ans = solve(idx - 1, wt_left);
-    if (wt_left - wt[idx] >= 0)
-        ans = (ans > solve(idx - 1, wt_left - wt[idx]) + val[idx]) ? ans : (solve(idx - 1, wt_left - wt[idx]) + val[idx]);
+    long long ans = s(idx - 1, wL);
+    if (wL - wt[idx] >= 0)
+        ans = (ans > s(idx - 1, wL - wt[idx]) + val[idx]) ? ans : (s(idx - 1, wL - wt[idx]) + val[idx]);
 
-    return dp[idx][wt_left] = ans;
+    return dp[idx][wL] = ans;
 }
 
 int main() {
@@ -30,7 +30,7 @@ int main() {
     for (int i = 0; i < n; i++)
         scanf("%d %d", &wt[i], &val[i]);
 
-    long long x = solve(n - 1, a);
+    long long x = s(n - 1, a);
     printf("%lld\n", x);
     return 0;
 }

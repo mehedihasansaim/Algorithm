@@ -2,21 +2,21 @@
 #include <stdlib.h>
 
 
-int calculateMinDistance(int n, int positions[]) {
+int calculateDistance(int n, int positions[]) {
 
-    int minPos = positions[0];
+    int minPosition = positions[0];
     int maxPos = positions[0];
     int i;
     for ( i = 1; i < n; i++) {
-        if (positions[i] < minPos) {
-            minPos = positions[i];
+        if (positions[i] < minPosition) {
+            minPosition = positions[i];
         }
         if (positions[i] > maxPos) {
             maxPos = positions[i];
         }
     }
 
-    return 2 * (maxPos - minPos);
+    return 2 * (maxPos - minPosition);
 }
 
 int main() {
@@ -33,7 +33,7 @@ int main() {
             scanf("%d", &positions[i]);
         }
 
-        int result = calculateMinDistance(n, positions);
+        int result = calculateDistance(n, positions);
         printf("%d\n", result);
     }
 
